@@ -140,56 +140,60 @@ function getdiff(){
 
 
 function lap() {
-    
-    if(timer){
-        //displaying record container div
-        $id("record-container").style.display = "block";
-        
-        // calling getting difference function
-        getdiff();
+  if (timer) {
+    // Displaying the record container div
+    $id("record-container").style.display = "block";
 
-        var lap_time = $id("hr").innerHTML + ":" 
-        + $id("min").innerHTML + ":" 
-        + $id("sec").innerHTML + ":" 
-        + $id("count").innerHTML;
-        audio.play();
-        const table = $id("record-table-body");
-        const row = table.insertRow(0);
-        const no_cell = row.insertCell(0);
-        const time_cell = row.insertCell(1);
-        const diff_cell = row.insertCell(2);
-        
-        no_cell.innerHTML = lapCounter;
-        time_cell.innerHTML = lap_time;
+    // Calling the get difference function
+    getdiff();
 
+    var lap_time =
+      $id("hr").innerHTML +
+      ":" +
+      $id("min").innerHTML +
+      ":" +
+      $id("sec").innerHTML +
+      ":" +
+      $id("count").innerHTML;
+    audio.play();
+    const table = $id("record-table-body");
+    const row = table.insertRow(table.rows.length); // Append lap times to the end
+    const no_cell = row.insertCell(0);
+    const time_cell = row.insertCell(1);
+    const diff_cell = row.insertCell(2);
 
+    no_cell.innerHTML = lapCounter;
+    time_cell.innerHTML = lap_time;
 
-        var hrString = diff_hr;
-        var minString = diff_min;
-        var secString = diff_sec;
-        var countString = diff_count;
-    
-        if ( diff_hr < 10) {
-            hrString = "0" + hrString;
-        }
-        if (diff_min < 10) {
-            minString = "0" + minString;
-        }
-        if (diff_sec < 10) {
-            secString = "0" + secString;
-        }
-        if (diff_count < 10) {
-            countString = "0" + countString;
-        }
-        diff_cell.innerHTML = hrString+ ":" 
-        + minString+ ":" 
-        + secString + ":" 
-        + countString;
-        
-        lapCounter++;
+    var hrString = diff_hr;
+    var minString = diff_min;
+    var secString = diff_sec;
+    var countString = diff_count;
+
+    if (diff_hr < 10) {
+      hrString = "0" + hrString;
     }
-}
+    if (diff_min < 10) {
+      minString = "0" + minString;
+    }
+    if (diff_sec < 10) {
+      secString = "0" + secString;
+    }
+    if (diff_count < 10) {
+      countString = "0" + countString;
+    }
+    diff_cell.innerHTML =
+      hrString +
+      ":" +
+      minString +
+      ":" +
+      secString +
+      ":" +
+      countString;
 
+    lapCounter++;
+  }
+}
 function clearLap() {
     //hiding record container div
     $id("record-container").style.display = "none";
